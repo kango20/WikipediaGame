@@ -17,7 +17,26 @@ The proposed improvement to the Wikipedia Game is by integrating a semantic simi
 Traditional BFS treats all links equally, potentially leading to longer paths that are not related to the target article. By using semantic similarity, we can guide the search towards more relevant articles, making the game more educational and efficient.
 
 ### Description
-The improvement involves calculating semantic similarity scores between the text of the links in the current article and the target article using pre-trained word embedding models like Word2Vec or GloVe. The algorithm then prioritizes nodes with higher semantic similarity to the target for exploration.
+The core improvement to the Wikipedia Game involves leveraging semantic similarity measures to enhance the efficiency and educational value of the game's pathfinding mechanism. Instead of the traditional BFS algorithm, which treats all links equally and explores them in a linear, unranked order, the proposed method integrates word embeddings to assess and prioritize links based on their semantic closeness to the target article.
+
+### Key Components:
+
+- **Semantic Similarity Measurement**: Utilizes pre-trained word embeddings models (e.g., Word2Vec, GloVe) to calculate the semantic similarity between the text of links in the current Wikipedia article and the target article. This approach identifies which links are  closer to the target, aiming to reduce the path length by making more informed path choices.
+
+- **Priority Queue in BFS**: Modifies the traditional BFS algorithm to incorporate a priority mechanism, where links are enqueued based on their semantic similarity score. Links with higher relevance to the target article are explored first, potentially leading to a quicker discovery of the shortest path.
+
+### Expected Benefits:
+
+- **Efficiency**: By prioritizing links that are semantically related to the target article, the algorithm can find shorter paths more quickly than standard BFS, reducing the number of clicks needed to reach the target.
+  
+- **Educational Value**: This method encourages exploration of content that is more relevant to the target topic, enhancing the learning experience by exposing players to thematically connected articles.
+
+### Implementation Considerations:
+
+- **Word Embeddings Preprocessing**: The effectiveness of this improvement relies on the quality and relevance of the pre-trained word embeddings used to calculate semantic similarity.
+  
+- **Computational Resources**: Calculating semantic similarity for multiple links can be resource-intensive. This means there may be a higher priority to necessitate efficient implementation and possibly the use of caching strategies to store similarity scores for frequently encountered articles.
+
 
 ### Pseudo-Code
 
