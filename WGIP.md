@@ -51,3 +51,14 @@ def semantic_bfs(start_article, target_article, word_embedding_model):
                 new_path.append(link)
                 queue.put((link, new_path))
 
+
+```
+## Special Libraries Required
+- Wikipedia API: For fetching article links.
+- Gensim: For loading and utilizing pre-trained Word2Vec or GloVe models.
+
+## Challenges and Limitations
+- Computational Overhead: Calculating semantic similarity for every link may increase computational overhead.
+- Relevance Accuracy: The accuracy of semantic similarity measures can vary, potentially affecting pathfinding efficiency.
+- Model Limitations: Pre-trained models may not perfectly capture the semantic relationship for all topics.
+
