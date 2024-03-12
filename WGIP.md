@@ -1,24 +1,23 @@
 # Wikipedia Game Improvement Proposal (WGIP)
 
 ## Authors
-- Author 1: [Name, Contribution]
-- Author 2: [Name, Contribution]
+- Author: Karen Ngo
 
 ## Introduction
-The Wikipedia Game is a fun and educational challenge that involves navigating from one specified Wikipedia article to another using the least number of clicks. Players click on links within Wikipedia articles to reach their target. This game not only tests players' knowledge and strategy but also encourages exploration of the vast information available on Wikipedia.
+The Wikipedia Game is a challenge that involves navigating from one specified Wikipedia article to another using the least number of clicks. The user enters the Wikipedia link of the starting page and the final page, and the program's searching algorithm will attempt to find a path of links from the source to final.
 
 A fundamental algorithm for finding the shortest path in such a networked environment is the Breadth-First Search (BFS) algorithm. BFS systematically explores a graph's edges to discover every vertex reachable from the source vertex, making it an ideal choice for finding the shortest path in the Wikipedia Game.
 
 ## Proposed Improvement: Semantic Similarity Pathfinding
 
 ### Overview
-We propose an improvement to the Wikipedia Game by integrating a semantic similarity measure into the BFS algorithm. This approach utilizes word embeddings to prioritize links that are semantically closer to the target article's topic, potentially reducing the number of hops needed to reach the target.
+The proposed improvement to the Wikipedia Game is by integrating a semantic similarity measure into the BFS algorithm. This approach utilizes word embeddings to prioritize links semantically closer to the target article's topic, potentially reducing the number of hops needed to reach the target.
 
 ### Rationale
-Traditional BFS treats all links equally, potentially leading to longer paths that are not thematically related to the target article. By using semantic similarity, we can guide the search towards more relevant articles, making the game more educational and efficient.
+Traditional BFS treats all links equally, potentially leading to longer paths that are not related to the target article. By using semantic similarity, we can guide the search towards more relevant articles, making the game more educational and efficient.
 
 ### Description
-Our improvement involves calculating semantic similarity scores between the text of the links in the current article and the target article using pre-trained word embeddings models like Word2Vec or GloVe. The algorithm then prioritizes nodes (links) with higher semantic similarity to the target for exploration.
+The improvement involves calculating semantic similarity scores between the text of the links in the current article and the target article using pre-trained word embedding models like Word2Vec or GloVe. The algorithm then prioritizes nodes with higher semantic similarity to the target for exploration.
 
 ### Pseudo-Code
 
