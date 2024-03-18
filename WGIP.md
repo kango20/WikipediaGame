@@ -21,7 +21,7 @@ The core improvement to the Wikipedia Game involves leveraging semantic similari
 
 ### Key Components:
 
-- **Semantic Similarity Measurement**: Utilizes pre-trained word embeddings models (e.g., Word2Vec, GloVe) to calculate the semantic similarity between the text of links in the current Wikipedia article and the target article. This approach identifies which links are  closer to the target, aiming to reduce the path length by making more informed path choices.
+- **Semantic Similarity Measurement**: Utilizes pre-trained transformer models to calculate the semantic similarity between the text in the current Wikipedia article and the target article. This approach identifies which links are  closer to the target, aiming to reduce the path length by making more informed path choices.
 
 - **Priority Queue in BFS**: Modifies the traditional BFS algorithm to incorporate a priority mechanism, where links are enqueued based on their semantic similarity score. Links with higher relevance to the target article are explored first, potentially leading to a quicker discovery of the shortest path.
 
