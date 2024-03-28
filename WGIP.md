@@ -81,3 +81,30 @@ def transformer_semantic_bfs(start_article, target_article, model, tokenizer):
 - Relevance Accuracy: The accuracy of semantic similarity measures can vary, potentially affecting pathfinding efficiency.
 - Model Limitations: Pre-trained models may not perfectly capture the semantic relationship for all topics.
 
+## Milestones
+### Milestone 1: Project Setup and Preliminary Research
+- **Objective**: Set up the development environment and complete preliminary research on transformer models suitable for the project.
+- **Deliverables**:
+  - A development environment setup, including necessary software, tools, and libraries (Python, PyTorch, Transformers library, Wikipedia API).
+  - Summarize the transformer models evaluated, with a focus on BERT and GPT, and the chosen model.
+-**Deadline**: April 4, 2024
+
+### Milestone 2: Development
+- **Objective**: Develop a basic prototype that integrates the transformer model with the BFS algorithm for semantic pathfinding.
+- **Deliverables**:
+  - A working prototype script that can perform semantic BFS on a small subset of Wikipedia articles.
+  - Documentation of the prototype, including a description of the algorithm and instructions for running the prototype.
+-**Deadline**: April 18, 2024
+
+### Milestone 3: Efficiency and Optimization
+- **Objective**: Optimize the prototype for efficiency and scalability, focusing on reducing computational overhead.
+- **Deliverables**:
+  - An optimized version of the prototype that includes efficiency improvements such as caching similarity scores and optimizing transformer model usage.
+-**Deadline**: April 25, 2024
+
+### Milestone 4: Testing and Feedback
+- **Objective**: Conduct comprehensive testing of the system and collect user feedback.
+- **Deliverables**:
+  - A test plan and report outlining the testing methodology, test cases, and results.
+  - A collection of user feedback on the usability and educational value of the game.
+-**Deadline**: May 2, 2024
