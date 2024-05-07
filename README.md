@@ -10,3 +10,5 @@ To run and test the WGIP, you need to install several libraries and set up a sui
    ```bash
    git clone https://github.com/yourusername/WGIP.git
    cd WGIP
+
+## Testing
