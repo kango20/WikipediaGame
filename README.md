@@ -8,7 +8,7 @@ To run and test the WGIP, you need to install several libraries and set up a sui
 
 1. **Clone the Repository:**
    ```bash
-   git clone https://github.com/yourusername/WGIP.git
+   git clone https://github.com/kango/WGIP.git
    cd WGIP
 
 ## Testing
