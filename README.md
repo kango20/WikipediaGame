@@ -44,5 +44,8 @@ source myenv/bin/activate
 pip install requests beautifulsoup4 tensorflow transformers
 ```
 
-
 ## Testing
+To run the code:
+```bash
+python3 server.py
+```
