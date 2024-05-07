@@ -8,7 +8,25 @@ To run and test the WGIP, you need to install several libraries and set up a sui
 
 1. **Clone the Repository:**
    ```bash
-   git clone https://github.com/kango/WGIP.git
-   cd WGIP
+   git clone https://github.com/kango/WGIP.git](https://github.com/kango20/WikipediaGame.git
+2. **Install Python:**
+Download and install it from [python.org](https://www.python.org/downloads/)
+3. **(Optional) Set Up a Virtual Environment:**
+Use a virtual environment to manage the Python packages for this project:
+```bash
+# Create a virtual environment
+python -m venv myenv
+
+# Activate the virtual environment
+# On Windows:
+myenv\Scripts\activate
+# On macOS and Linux:
+source myenv/bin/activate
+```
+4. **Install Required Packages:**
+```bash
+pip install requests beautifulsoup4 tensorflow transformers
+```
+
 
 ## Testing
