@@ -1,7 +1,7 @@
 # Wikipedia Game Improvement Proposal (WGIP)
 
 ## Project Description
-This Wikipedia Game is a modified version of the traditional Wikipedia navigation challenge, aiming to reduce the number of clicks needed to move from one article to another. This project incorporates a transformer-based model for semantic similarity alongside a Breadth-First Search (BFS) algorithm to prioritize navigation through semantically related links.
+The Wikipedia Game challenges players to navigate from one Wikipedia article to another using the least number of clicks. The project enhances this game by integrating a transformer-based model to measure semantic similarity, improving the pathfinding algorithm. By utilizing Breadth-First Search (BFS) augmented with a transformer model, the game prioritizes links that are semantically closer to the target article, potentially reducing the number of hops needed to reach the goal. This method makes the search more efficient and enhances the game's educational value by guiding players through more relevant content.
 
 ### Key Features
 
