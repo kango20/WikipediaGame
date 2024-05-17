@@ -6,7 +6,6 @@ import crawler2
 RATE_LIMIT = "5/minute"  # requests per minute and IP address
 
 app = Flask(__name__, static_folder='../client')
-# limiter = Limiter(app, key_func=lambda: request.remote_addr)
 limiter = Limiter(app=app, key_func=get_remote_address)
 
 @app.route('/', methods=['GET'])
@@ -32,7 +31,7 @@ def find_path():
         return jsonify({'error': str(e), 'logs': e.logs, 'time': e.time, 'discovered': e.discovered}), 500
     except Exception as e:
         app.logger.error(f"Error occurred: {e}")
-        return jsonify({'error': 'An error occurred while finding path', 'logs': logs, 'time': time, 'discovered': discovered}), 500
+        return jsonify({'error': 'An error occurred while finding path', 'logs': crawler2.global_logs, 'time': 0, 'discovered': 0}), 500
 
 @app.route('/static/<path:path>')
 def send_static(path):
@@ -41,7 +40,7 @@ def send_static(path):
 @app.route('/logs', methods=['GET'])
 def stream_logs():
     def generate():
-        for log in logs:
+        for log in crawler2.global_logs:
             yield f"data: {log}\n\n"
     return Response(generate(), mimetype='text/event-stream')
 
