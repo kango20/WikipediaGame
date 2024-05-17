@@ -49,4 +49,7 @@ Run the code using this script:
 ```bash
 python3 server.py
 ```
-Click on the HTTP link provided and enter the link of the start Wikipedia page and the final Wikipedia page. Click search and the program will begin running the algorithm while printing the ongoing status in the terminal and log. 
+Click on the HTTP link provided and enter the link of the start Wikipedia page and the final Wikipedia page. Click search and the program will begin running the algorithm while printing the ongoing status in the terminal and log.
+
+
+## Future Works and Limitations
