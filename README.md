@@ -1,55 +1,52 @@
-# WikipediaGame
+# Wikipedia Game Improvement Proposal (WGIP)
 
-<!--At the time of this writing available at http://192.168.16.72:5000/ from inside the Chapman network.-->
-At the time of this writing available at https://wikipiediagame.azurewebsites.net/ 
-## Installation
+## Project Description
+The Wikipedia Game challenges players to navigate from one Wikipedia article to another using the least number of clicks. The project enhances this game by integrating a transformer-based model to measure semantic similarity, improving the pathfinding algorithm. By utilizing Breadth-First Search (BFS) augmented with a transformer model, the game prioritizes links that are semantically closer to the target article, potentially reducing the number of hops needed to reach the goal. This method makes the search more efficient and enhances the game's educational value by guiding players through more relevant content.
 
-(these instructions should work under GNU/Linux and Macos and WSL)
+### Key Features
 
-Prerequisites: Python
+- **Semantic Analysis:** Utilizes the transformer model "sentence-transformers/all-MiniLM-L6-v2" to generate semantic embeddings of Wikipedia articles. This allows the system to prioritize links that are more relevant to the target article's content.
 
+- **Pathfinding Algorithm:** Combines traditional BFS with a modern approach to semantic similarity, sorting possible paths by their relevance to the target article, ensuring more efficient navigation.
+
+- **Link Extraction:** Employs BeautifulSoup for web scraping, extracting and filtering valid Wikipedia links from articles, focusing on those that contribute to a more relevant path toward the target article.
+
+- **Efficiency and Timeout Management:** Implements a timeout mechanism to prevent excessive computation times, ensuring the game remains responsive even under constraints.
+
+## Educational Value
+
+By guiding players through content that is semantically related to the target article, the game not only makes the search process more efficient but also enhances the learning experience, making it a powerful educational tool.
+
+
+
+## Installation Instructions
+To run and test the WGIP, you need to install several libraries and set up a suitable Python environment. Follow these steps:
+
+1. **Clone the Repository:**
+   ```bash
+   git clone https://github.com/kango/WGIP.git](https://github.com/kango20/WikipediaGame.git
+2. **Install Python:**
+Download and install it from [python.org](https://www.python.org/downloads/)
+3. **(Optional) Set Up a Virtual Environment:**
+Use a virtual environment to manage the Python packages for this project:
+```bash
+# Create a virtual environment
+python -m venv myenv
+
+# Activate the virtual environment
+# On Windows:
+myenv\Scripts\activate
+# On macOS and Linux:
+source myenv/bin/activate
 ```
-git clone https://github.com/alexhkurz/WikipediaGame.git
-cd WikipediaGame/server
-source setup.sh
+4. **Install Required Packages:**
+```bash
+pip install requests beautifulsoup4 tensorflow transformers
 ```
 
-Starting the server:
-
+## Testing
+Run the code using this script:
+```bash
+python3 server.py
 ```
-python server.py
-```
-
-(For development one may want to use `watchmedo auto-restart -d . -p '*.py' -- python server.py`.)
-
-Play the game on [`localhost:5000`](http://127.0.0.1:5000/) (this link will only work after you started the server on your machine (watch the console in case the port number changed to eg `5001`)).
-
-## Limitations
-
-- The UI works as expected only for chrome-based browsers (Chrome, Brave, ...).
-- Only tested for pages that are no further than two hops away. 
-- Only works for wikipedia pages.
-- Implemented via HTTP requests (no websocket connection between client and server).
-- Users are identified by IP adress (no cookies or sessions).
-- ...
-
-## Parameters
-
-- `RATELIMIT` in `server.py`.
-- `TIMEOUT` in `crawler.py`.
-
-## Further Ideas
-
-- Improve the efficiency of the search.
-- Add heuristics for faster search.
-- Use LLMs to make better guesses, resulting in faster search.
-- ...
-
-## Branches
-
-- `version1` computes the shortest path betwen two wikipedia pages
-- `version2` (=`main`) additionally displays all pages visited during the computation
-- `dev` will output the pages being visited in real time (under development)
-
-
-
+Click on the HTTP link provided and enter the link of the start Wikipedia page and the final Wikipedia page. Click search and the program will begin running the algorithm while printing the ongoing status in the terminal and log. 
