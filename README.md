@@ -52,4 +52,48 @@ python3 server.py
 Click on the HTTP link provided and enter the link of the start Wikipedia page and the final Wikipedia page. Click search and the program will begin running the algorithm while printing the ongoing status in the terminal and log.
 
 
-## Future Works and Limitations
+## Limitations and Future Works
+
+### Limitations
+
+1. **Timeout Handling**:
+   - Although the timeout mechanism ensures the search does not run indefinitely, it may interrupt the process before a path is found. This can be particularly problematic for searches involving distant or loosely connected Wikipedia pages.
+
+2. **Dependency on External Services**:
+   - The algorithm relies on external requests to fetch Wikipedia pages. Any downtime or latency from Wikipedia servers can affect the performance and reliability of the crawler.
+
+3. **Semantic Similarity Limitations**:
+   - The semantic similarity model, while effective, may not always capture the full context or relevance of Wikipedia pages. This can result in suboptimal paths or missed connections.
+
+4. **Scalability**:
+   - The current implementation processes pages sequentially and maintains all discovered pages in memory. This may not scale well for extensive searches or large datasets.
+
+5. **Real-Time Logging**:
+   - While real-time logging provides valuable insights into the crawling process, it may introduce additional overhead and latency, especially for high-frequency logging.
+  
+6. **Computationally Expensive**:
+   - While calculating the semantic similarity score may be effective, it is computationally expensive and takes a long time to compute. Therefore, this slows down the time it may take to find a path exponentially. 
+
+
+### Future Works
+
+1. **Enhanced Pathfinding Algorithms**:
+   - Explore alternative pathfinding algorithms that can more efficiently handle large datasets and provide more accurate results. Techniques like bidirectional search or heuristic-based methods could be used.
+
+2. **Improved Semantic Models**:
+   - Experiment with more advanced semantic models or fine-tune existing models on Wikipedia-specific data to improve the accuracy and relevance of the semantic similarity calculations.
+
+3. **Parallel Processing**:
+   - Implement parallel processing or distributed computing techniques to handle multiple pages concurrently, improving the scalability and efficiency of the crawler.
+
+4. **Caching Mechanism**:
+   - Develop a caching mechanism to store and reuse previously fetched Wikipedia pages and their embeddings. This can reduce the number of external requests and speed up the search process.
+
+5. **Error Handling and Robustness**:
+   - Enhance error handling to gracefully manage unexpected issues, such as network failures or invalid inputs. Implementing retries and fallback mechanisms can improve the overall robustness.
+
+6. **Extended Functions**:
+   - Add support for additional features, such as filtering links based on categories or topics, prioritizing certain types of links, or providing user-configurable search parameters.
+
+By addressing these limitations and exploring future work opportunities, the project can be significantly improved in terms of efficiency, scalability, and usability.
+
