@@ -6,7 +6,7 @@ from transformers import AutoTokenizer, TFAutoModel
 import tensorflow as tf
 
 # Constants
-TIMEOUT = 100  # time limit in seconds for the search
+TIMEOUT = 500  # time limit in seconds for the search
 
 # Load transformer model and tokenizer for TensorFlow
 tokenizer = AutoTokenizer.from_pretrained("sentence-transformers/all-MiniLM-L6-v2")
@@ -43,40 +43,52 @@ def find_path(start_page, finish_page):
     global logs
     logs = []
 
+    # Start tracking time
+    start_time = time.time()
+
+    # Fetch and process the finish page
     finish_page_text = requests.get(finish_page).text
     finish_page_embedding = get_embedding(finish_page_text)
 
-    queue = [(start_page, [start_page], 0, get_embedding(requests.get(start_page).text))]
+    # Initialize the queue with the start page
+    queue = [(start_page, [start_page], get_embedding(requests.get(start_page).text))]
     discovered = set()
 
-    start_time = time.time()
-    elapsed_time = time.time() - start_time
-    while queue and elapsed_time < TIMEOUT:
-        queue.sort(key=lambda x: -semantic_similarity(x[3], finish_page_embedding))  # prioritize by similarity
-        (vertex, path, depth, embedding) = queue.pop(0)
+    while queue:
         elapsed_time = time.time() - start_time
         if elapsed_time > TIMEOUT:
             log_message(f"Search took {elapsed_time} seconds.")
             log_message(f"Discovered pages: {len(discovered)}")
             raise TimeoutErrorWithLogs("Search exceeded time limit.", logs, elapsed_time, len(discovered))
+
+        # Sort the queue based on semantic similarity with the finish page embedding
+        queue.sort(key=lambda x: -semantic_similarity(x[2], finish_page_embedding))
+        vertex, path, embedding = queue.pop(0)
         
+        # Fetch and process links from the current vertex
         for next in set(get_links(vertex)) - discovered:
             next_text = requests.get(next).text
             next_embedding = get_embedding(next_text)
             
+            # Check if the next page is the finish page
             if next == finish_page:
                 log_message(f"Found finish page: {next}")
+                elapsed_time = time.time() - start_time
                 log_message(f"Search took {elapsed_time} seconds.")
                 log_message(f"Discovered pages: {len(discovered)}")
-                return path + [next], logs, elapsed_time, len(discovered)  # return with success
-            else:
-                log_message(f"Adding link to queue: {next} (depth {depth})")
-                discovered.add(next)
-                queue.append((next, path + [next], depth + 1, next_embedding))
+                return path + [next], logs, elapsed_time, len(discovered)  # Return the successful path
+            
+            log_message(f"Adding link to queue: {next}")
+            discovered.add(next)
+            queue.append((next, path + [next], next_embedding))
+
+        # Update the elapsed time at the end of each iteration
         elapsed_time = time.time() - start_time
+
     log_message(f"Search took {elapsed_time} seconds.")
     log_message(f"Discovered pages: {len(discovered)}")
     raise TimeoutErrorWithLogs("Search exceeded time limit.", logs, elapsed_time, len(discovered))
+
 
 class TimeoutErrorWithLogs(Exception):
     def __init__(self, message, logs, time, discovered):
